@@ -1,7 +1,6 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material";
-import { SearchTextContextProvider } from "./Contexts/SearchTextContextProvider";
+import { SearchTextContextProvider } from "./contexts/SearchTextContextProvider";
 
 import { HomePage } from "./pages/HomePage";
 import { DetailsPage } from "./pages/DetailsPage";

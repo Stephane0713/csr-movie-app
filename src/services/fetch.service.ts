@@ -1,7 +1,7 @@
 import { Movie, SearchMoviesResult } from "../models/movie.model";
 
 const baseUrl = "https://api.themoviedb.org/3";
-const apiKey = "5f3c2656cae61dc6112ed10d2ad87cfb";
+const apiKey = process.env["REACT_APP_API_KEY"];
 
 export async function fetchMovies(search: string): Promise<SearchMoviesResult> {
   return fetch(
@@ -10,7 +10,7 @@ export async function fetchMovies(search: string): Promise<SearchMoviesResult> {
 }
 
 export async function fetchMovie(id: string): Promise<Movie> {
-  return fetch(`${baseUrl}/find/movie/${id}?api_key=${apiKey}&language=fr-FR`).then(
+  return fetch(`${baseUrl}/movie/${id}?api_key=${apiKey}&language=fr-FR`).then(
     async (res) => await res.json()
   ) as Promise<Movie>;
 }
