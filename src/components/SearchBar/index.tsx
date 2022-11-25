@@ -5,7 +5,7 @@ import { SearchTextContext } from "../../contexts/SearchTextContextProvider";
 
 const SearchBar = () => {
   const inputValue = React.useRef<HTMLInputElement>();
-  const { setSearch } = React.useContext(SearchTextContext);
+  const { search, setSearch } = React.useContext(SearchTextContext);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -23,6 +23,7 @@ const SearchBar = () => {
         size="small"
         id="search"
         inputRef={inputValue}
+        defaultValue={search}
       />
       <Button variant="outlined" type="submit">
         <Search />
