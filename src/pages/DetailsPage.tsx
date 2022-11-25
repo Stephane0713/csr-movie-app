@@ -27,7 +27,7 @@ const DetailsPage = () => {
         setMoviePoster(`https://image.tmdb.org/t/p/w500/${res?.poster_path}`);
       });
     }
-  }, [id]);
+  }, [id, setMovie, setMoviePoster]);
 
   if (!movie) return <></>;
 

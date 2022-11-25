@@ -21,11 +21,13 @@ const HomePage = () => {
   const [searchResult, setSearchResult] = React.useState<SearchMoviesResult>();
   const navigate = useNavigate();
 
+  const results = searchResult?.results ?? [];
+
   React.useEffect(() => {
     if (search !== "") {
       fetchMovies(search).then(setSearchResult);
     }
-  }, [search]);
+  }, [search, setSearchResult]);
 
   return (
     <>
@@ -59,24 +61,23 @@ const HomePage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {searchResult?.results &&
-              searchResult?.results.map((movie) => (
-                <TableRow
-                  key={movie.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  className={classes.row}
-                  onClick={() => {
-                    navigate(`details/${movie.id}`);
-                  }}
-                >
-                  <TableCell align="center">{movie.id}</TableCell>
-                  <TableCell align="center">{movie.title}</TableCell>
-                  <TableCell align="center">{movie.vote_average}</TableCell>
-                  <TableCell align="center">{movie.vote_count}</TableCell>
-                  <TableCell align="center">{movie.popularity}</TableCell>
-                  <TableCell align="center">{movie.release_date}</TableCell>
-                </TableRow>
-              ))}
+            {results.map((movie) => (
+              <TableRow
+                key={movie.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={classes.row}
+                onClick={() => {
+                  navigate(`details/${movie.id}`);
+                }}
+              >
+                <TableCell align="center">{movie.id}</TableCell>
+                <TableCell align="center">{movie.title}</TableCell>
+                <TableCell align="center">{movie.vote_average}</TableCell>
+                <TableCell align="center">{movie.vote_count}</TableCell>
+                <TableCell align="center">{movie.popularity}</TableCell>
+                <TableCell align="center">{movie.release_date}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
